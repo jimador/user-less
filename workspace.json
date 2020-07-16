@@ -1,0 +1,178 @@
+{
+  "version": 1,
+  "projects": {
+    "user-less-api": {
+      "root": "apps/user-less-api",
+      "sourceRoot": "apps/user-less-api/src",
+      "projectType": "application",
+      "prefix": "user-less-api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@flowaccount/nx-serverless:build",
+          "options": {
+            "outputPath": "dist/apps/user-less-api",
+            "package": "apps/user-less-api",
+            "serverlessConfig": "apps/user-less-api/serverless.yml",
+            "servicePath": "apps/user-less-api",
+            "tsConfig": "apps/user-less-api/tsconfig.app.json",
+            "provider": "aws",
+            "processEnvironmentFile": "env.json"
+          },
+          "configurations": {
+            "dev": {
+              "optimization": false,
+              "sourceMap": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "production": {
+              "optimization": true,
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/user-less-api/environment.ts",
+                  "with": "apps/user-less-api/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@flowaccount/nx-serverless:offline",
+          "options": {
+            "buildTarget": "user-less-api:build",
+            "config": "apps/user-less-api/serverless.yml",
+            "location": "dist/apps/user-less-api"
+          },
+          "configurations": {
+            "dev": {
+              "buildTarget": "user-less-api:build:dev"
+            },
+            "production": {
+              "buildTarget": "user-less-api:build:production"
+            }
+          }
+        },
+        "deploy": {
+          "builder": "@flowaccount/nx-serverless:deploy",
+          "options": {
+            "buildTarget": "user-less-api:build:production",
+            "config": "apps/user-less-api/serverless.yml",
+            "location": "dist/apps/user-less-api",
+            "package": "dist/apps/user-less-api"
+          }
+        },
+        "destroy": {
+          "builder": "@flowaccount/nx-serverless:destroy",
+          "options": {
+            "buildTarget": "user-less-api:build:production",
+            "config": "apps/user-less-api/serverless.yml",
+            "location": "dist/apps/user-less-api",
+            "package": "dist/apps/user-less-api"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/user-less-api/tsconfig.app.json",
+              "apps/user-less-api/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/user-less-api/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/user-less-api/jest.config.js",
+            "tsConfig": "apps/user-less-api/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/react": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/web": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nx-plugin": {
+      "plugin": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "user-less-api"
+}

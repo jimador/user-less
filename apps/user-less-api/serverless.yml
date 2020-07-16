@@ -1,0 +1,24 @@
+service: user-less-api
+frameworkVersion: ">=1.1.0 <2.0.0"
+plugins:
+  - serverless-offline
+package:
+  individually: true
+  excludeDevDependencies: false
+  # path: dist/apps/user-less-api
+  custom:
+    enable_optimize:
+      local: false
+provider:
+  name: aws
+  region: undefined
+  endpointType: undefined
+  runtime: nodejs10.x
+functions:
+  hello-world:
+    handler: src/handler.helloWorld
+    events:
+      - http:
+          path: hello-world
+          method: get
+      
