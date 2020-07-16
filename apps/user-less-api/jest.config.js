@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'user-less-api',
+  name: 'user-management-api',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/user-less-api'
+  coverageDirectory: '../../coverage/apps/user-management-api'
 };
