@@ -1,4 +1,4 @@
-## User Management API
+## User-Less API
 
 
 ### About
@@ -15,26 +15,24 @@ TypeScript/NodeJS AWS lambda GraphQL API for User Management.
 
 #### Running locally
 ```bash
-sls dynamodb start 
+cd apps/user-less-api && sls offline start --httpPort=5555
 ```
-This will start a local DynamoDB instance (via serverless) running on port 8000 
+This will start a local instance of the user-less-api lambda, and a local dynamodb instance.
 
-```bash
-nx serve user-management-api --port=5555
-```
-This will start a local instance of the user-management-api lambda running on port 5555
+- GraphQl: http://localhost:5555/dev/graphql
+- DynamoDB: http://localhost:8000/shell
 
 #### Automated AWS Deployment
-Automated AWS deployments are provided via Serverless. Run `yarn nx user-management-api:deploy` after 
-setting [up AWS credentials](https://www.serverless.com/framework/docs/providers/aws/guide/deploying/) to deploy the user-management-api to AWS lambda, a DynamoDB instance with the 
+Automated AWS deployments are provided via Serverless. Run `yarn nx user-less-api:deploy` after 
+setting [up AWS credentials](https://www.serverless.com/framework/docs/providers/aws/guide/deploying/) to deploy the user-less-api to AWS lambda, a DynamoDB instance with the 
 User table, and an AWS gateway for communication with the GQL API.
 
 #### Destroy
-run `yarn nx user-management-api:destroy` to tear down your the user-management-api AWS environment created above.
+run `yarn nx user-less-api:destroy` to tear down your the user-less-api AWS environment created above.
  
 ## GraphQL Schema
 
-The GQL schema can be found [here](./src/graphql/schema.graphql). The TS API is built with 
+The GQL schema can be found [here](src/graphql/schema.graphql). The TS API is built with 
 [TypeGraphQL](https://typegraphql.com/) and then the schema is generated from the TypeScript types. 
 
 
@@ -43,9 +41,6 @@ The GQL schema can be found [here](./src/graphql/schema.graphql). The TS API is 
 To serve the `production` profile locally, run:
  
 ```bash
-nx serve user-management-api:prod --port=5555
+yarn nx serve user-less-api:prod --port=5555
 ```
 
-
----
-##### This library was generated with [Nx](https://nx.dev).

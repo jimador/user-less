@@ -26,23 +26,39 @@
     "help": "nx help"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "serverless-dynamodb-local": "^0.2.39"
+  },
   "devDependencies": {
     "@flowaccount/nx-serverless": "^0.5.0",
+    "@graphql-codegen/cli": "^1.16.0",
+    "@graphql-codegen/typescript-operations": "^1.16.0",
+    "@graphql-codegen/typescript-react-apollo": "^1.16.0",
+    "@graphql-codegen/typescript-resolvers": "^1.16.0",
+    "@graphql-codegen/typescript-type-graphql": "^1.16.0",
+    "@nrwl/jest": "9.2.2",
     "@nrwl/workspace": "9.5.1",
+    "@types/aws-lambda": "^8.10.40",
+    "@types/faker": "^4.1.12",
+    "@types/jest": "25.1.4",
     "@types/node": "~8.9.4",
+    "apollo-boost": "^0.4.9",
+    "apollo-server-lambda": "^2.15.1",
+    "aws-sdk": "^2.714.0",
     "dotenv": "6.2.0",
     "eslint": "6.8.0",
+    "factory.ts": "^0.5.1",
+    "graphql": "^15.3.0",
+    "jest": "25.2.3",
     "prettier": "2.0.4",
+    "reflect-metadata": "^0.1.13",
+    "runtypes": "^5.0.1",
+    "serverless": "1.58.0",
+    "serverless-offline": "^6.4.0",
+    "ts-jest": "25.2.1",
     "ts-node": "~7.0.0",
     "tslint": "~6.0.0",
-    "typescript": "~3.8.3",
-    "@nrwl/jest": "9.2.2",
-    "jest": "25.2.3",
-    "@types/jest": "25.1.4",
-    "ts-jest": "25.2.1",
-    "serverless": "1.58.0",
-    "serverless-offline": "^5.12.0",
-    "@types/aws-lambda": "^8.10.40"
+    "type-graphql": "^1.0.0-rc.3",
+    "typescript": "^3.9.7"
   }
 }
