@@ -1,14 +1,13 @@
-import { CSSReset, ThemeProvider } from '@chakra-ui/core';
 import { addDecorator, configure } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
-import theme from '../chakra'
+import { CSSReset, ThemeProvider } from '@chakra-ui/core';
 
 addDecorator (withKnobs);
 addDecorator (storyFn =>
   <>
-    <CSSReset/>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider>
+      <CSSReset />
       {storyFn ()}
     </ThemeProvider>
   </>);
