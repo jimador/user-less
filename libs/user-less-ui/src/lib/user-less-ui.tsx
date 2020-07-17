@@ -1,11 +1,13 @@
+import { Heading, Button } from '@chakra-ui/core';
 import React from 'react';
 
 
 export const UserLessUi = (_: {}) => {
   return (
-    <div>
-      <h1>Welcome to user-less-ui!</h1>
-    </div>
+    <>
+      <Heading>Welcome to user-less-ui!</Heading>
+      <Button variantColor="green">Button</Button>
+    </>
   );
 };
 

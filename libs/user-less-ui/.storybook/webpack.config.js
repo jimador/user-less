@@ -1,4 +1,6 @@
+
 const rootWebpackConfig = require('../../../.storybook/webpack.config');
+const webpack = require ('webpack');
 // Export a function. Accept the base config as the only param.
 module.exports = async ({ config, mode }) => {
   config = await rootWebpackConfig({ config, mode });
@@ -16,5 +18,8 @@ module.exports = async ({ config, mode }) => {
       ],
     },
   });
+  config.plugins.push(new webpack.DefinePlugin({
+    "process.env.NODE_ENV": JSON.stringify("development")
+  }))
   return config;
 };
