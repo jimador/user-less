@@ -10,7 +10,7 @@ const userSeedFileName = 'Users.json';
 const userSeedPath = path.join(__dirname, '..', 'seed', userSeedFileName);
 
 const createUser = () => {
-  const { lat, lng } = latLngGen().build(1)
+  const { lat, lng } = latLngGen().build(1);
   const user = {
     id: idGen(),
     address: addressGen(),
@@ -22,8 +22,8 @@ const createUser = () => {
     lat,
     lng
   };
-  return user
-}
+  return user;
+};
 
 const genUsers = (count = 50) => {
   return makeFactory(createUser()).buildList(count);

@@ -54,7 +54,7 @@ class UserCriteria implements IUserCriteria {
 class PageInfo implements IPageInfo {
   @Field((_type) => Number)
   limit: number;
-  @Field(() => String,{ nullable: true } )
+  @Field(() => String, { nullable: true })
   cursor?: string;
 }
 
@@ -69,7 +69,7 @@ export class UserResolver {
 
   @Query(_ => UserPage)
   async findAll(@Arg('pageInfo') pageInfo: PageInfo,
-                @Arg('criteria', {nullable: true}) criteria?: UserCriteria): Promise<UserPage> {
+                @Arg('criteria', { nullable: true }) criteria?: UserCriteria): Promise<UserPage> {
     const result = await userRepository.findAll(pageInfo, criteria);
     return result as UserPage;
   }

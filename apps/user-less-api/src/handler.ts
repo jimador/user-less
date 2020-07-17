@@ -6,7 +6,7 @@ import { ISODateScalar } from './domain';
 import { UserResolver } from './resolver/UserResolver';
 
 const server = new ApolloServer({
-  schema:  buildSchemaSync({
+  schema: buildSchemaSync({
     resolvers: [UserResolver],
     emitSchemaFile: path.resolve('/tmp', 'schema.graphql'),
     validate: false,

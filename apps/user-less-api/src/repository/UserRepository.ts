@@ -21,7 +21,7 @@ const byId = (userId: string): DocumentClient.GetItemInput =>
  */
 const saveOrUpdate = (userInput: IUser, userId?: string):
   DocumentClient.PutItemInput => {
-  const id = userId == null ?  v1() : userId;
+  const id = userId == null ? v1() : userId;
   const now = new Date().toISOString();
   const dob = userInput.dob.toISOString();
 
@@ -37,17 +37,17 @@ const saveOrUpdate = (userInput: IUser, userId?: string):
   };
 };
 
-const criteriaExists = (criteria: IUserCriteria) => criteria && criteria.name
+const criteriaExists = (criteria: IUserCriteria) => criteria && criteria.name;
 
 export const nameFilter = (user: IUser, criteria?: IUserCriteria) => {
   if (!criteriaExists(criteria)) {
     return true;
   } else {
-    const match = new RegExp(`^${criteria.name}.*$`, 'i')
+    const match = new RegExp(`^${criteria.name}.*$`, 'i');
 
-    return user.name.match(match)
+    return user.name.match(match);
   }
-}
+};
 
 
 /**
@@ -76,9 +76,9 @@ export const userRepository: UserRepository = new (class implements UserReposito
     const result = await dynamoDb.scan(UserTable).promise();
 
     const filtered = (result.Items as IUser[])
-      .filter(u => nameFilter(u, criteria))
+      .filter(u => nameFilter(u, criteria));
 
-    console.warn(`Got: ${filtered.length} items`)
+    console.warn(`Got: ${filtered.length} items`);
     const { items, cursor } = getPage(filtered, pageInfo);
     return {
       users: items,
@@ -100,8 +100,8 @@ export const userRepository: UserRepository = new (class implements UserReposito
       const saved = await this.findOne(params.Item.id);
       return saved;
     } catch ( e ) {
-      console.error(`Error saving ${userId}`)
-      console.error(`${e.message}`)
+      console.error(`Error saving ${userId}`);
+      console.error(`${e.message}`);
     }
   }
 
