@@ -39,6 +39,8 @@
   "dependencies": {
     "@apollo/react-common": "^3.1.4",
     "@apollo/react-hooks": "^3.1.5",
+    "@chakra-ui/core": "^1.0.0-next.6",
+    "@chakra-ui/theme": "^1.0.0-next.6",
     "@types/react-dom": "^16.9.8",
     "apollo-boost": "^0.4.9",
     "apollo-server-lambda": "^2.16.0",
@@ -48,9 +50,7 @@
     "runtypes": "^5.0.1",
     "serverless-dynamodb-local": "^0.2.39",
     "serverless-offline": "^6.4.0",
-    "type-graphql": "^1.0.0-rc.3",
-    "@chakra-ui/core": "^1.0.0-next.6",
-    "@chakra-ui/theme": "^1.0.0-next.6"
+    "type-graphql": "^1.0.0-rc.3"
   },
   "devDependencies": {
     "@babel/core": "7.8.4",
@@ -67,8 +67,12 @@
     "@nrwl/jest": "9.2.2",
     "@nrwl/lint": "^8.4.0-beta.4",
     "@nrwl/react": "^9.5.1",
+    "@nrwl/storybook": "9.5.1",
     "@nrwl/web": "9.5.1",
     "@nrwl/workspace": "9.5.1",
+    "@storybook/addon-knobs": "5.3.9",
+    "@storybook/react": "5.3.9",
+    "@testing-library/react": "^10.4.7",
     "@types/aws-lambda": "^8.10.40",
     "@types/faker": "^4.1.12",
     "@types/jest": "25.1.4",
@@ -95,10 +99,7 @@
     "ts-jest": "25.2.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.9.1",
-    "typescript": "^3.9.7",
-    "@nrwl/storybook": "9.5.1",
-    "@storybook/addon-knobs": "5.3.9",
-    "@storybook/react": "5.3.9"
+    "typescript": "^3.9.7"
   },
   "husky": {
     "hooks": {
