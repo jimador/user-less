@@ -27,7 +27,7 @@ jobs:
           CI: true
 
       - name: Lint
-        run: yarn lint
+        run: yarn nx run-many --target=lint --all
         env:
           CI: true
 
