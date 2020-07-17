@@ -28,9 +28,13 @@
     "prepush": "run-s affected:lint affected:test"
   },
   "private": true,
-  "engines" : { "node" : "12" },
+  "engines": {
+    "node": "12"
+  },
   "dependencies": {
-    "serverless-dynamodb-local": "^0.2.39"
+    "serverless-dynamodb-local": "^0.2.39",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   },
   "devDependencies": {
     "@babel/core": "7.8.4",
@@ -45,6 +49,7 @@
     "@nrwl/eslint-plugin-nx": "^9.5.1",
     "@nrwl/jest": "9.2.2",
     "@nrwl/lint": "^8.4.0-beta.4",
+    "@nrwl/react": "^9.5.1",
     "@nrwl/web": "9.5.1",
     "@nrwl/workspace": "9.5.1",
     "@types/aws-lambda": "^8.10.40",
@@ -80,12 +85,14 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.9.1",
     "type-graphql": "^1.0.0-rc.3",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "@babel/preset-react": "7.8.3"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn prepush"    }
+      "pre-push": "yarn prepush"
+    }
   },
   "lint-staged": {
     "*.{ts,js,md,yaml,yml,json}": "yarn format"

@@ -14,6 +14,7 @@ const runningNodeVersion = process.version;
 
 // set .nvmrc and .node_version to have the same version
 
+
 fs.writeFileSync(path.join(__dirname, '..', '.node-version'), requiredNodeVersion, 'UTF8');
 fs.writeFileSync(path.join(__dirname, '..', '.nvmrc'), requiredNodeVersion, 'UTF8');
 
