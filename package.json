@@ -24,7 +24,8 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "preinstall": "node  scripts/lock-node-version.js"
+    "preinstall": "node  scripts/lock-node-version.js",
+    "prepush": "run-s affected:lint affected:test"
   },
   "private": true,
   "engines" : { "node" : "12" },
@@ -83,8 +84,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
-    }
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn prepush"    }
   },
   "lint-staged": {
     "*.{ts,js,md,yaml,yml,json}": "yarn format"
