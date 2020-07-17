@@ -1,0 +1,17 @@
+overwrite: true
+hooks:
+  afterAllFileWrite:
+    - yarn format
+schema: "apps/user-less-api/src/graphql/schema.graphql"
+generates:
+  libs/user-less-gql-client/src/lib/generated/user-operations.tsx:
+    documents: "libs/user-less-gql-client/src/lib/graphql/user-operations.graphql"
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withHooks: true
+      withComponent: false
+      withHOC: false
+

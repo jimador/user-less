@@ -24,16 +24,33 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "preinstall": "node  scripts/lock-node-version.js"
+    "preinstall": "node  scripts/lock-node-version.js",
+    "prepush": "run-s affected:lint affected:test",
+    "gen:userless-api": "yarn nx run user-less-gql-client:generate",
+    "generate-gql": "run-p gen:userless-api"
   },
   "private": true,
-  "engines" : { "node" : "12" },
+  "engines": {
+    "node": "12"
+  },
   "dependencies": {
-    "serverless-dynamodb-local": "^0.2.39"
+    "@apollo/react-common": "^3.1.4",
+    "@apollo/react-hooks": "^3.1.5",
+    "@types/react-dom": "^16.9.8",
+    "apollo-boost": "^0.4.9",
+    "apollo-server-lambda": "^2.16.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "reflect-metadata": "^0.1.13",
+    "runtypes": "^5.0.1",
+    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-offline": "^6.4.0",
+    "type-graphql": "^1.0.0-rc.3"
   },
   "devDependencies": {
     "@babel/core": "7.8.4",
     "@babel/preset-env": "7.5.5",
+    "@babel/preset-react": "7.8.3",
     "@babel/preset-typescript": "7.8.3",
     "@flowaccount/nx-serverless": "^0.5.0",
     "@graphql-codegen/cli": "^1.16.0",
@@ -44,6 +61,7 @@
     "@nrwl/eslint-plugin-nx": "^9.5.1",
     "@nrwl/jest": "9.2.2",
     "@nrwl/lint": "^8.4.0-beta.4",
+    "@nrwl/react": "^9.5.1",
     "@nrwl/web": "9.5.1",
     "@nrwl/workspace": "9.5.1",
     "@types/aws-lambda": "^8.10.40",
@@ -52,9 +70,6 @@
     "@types/node": "~8.9.4",
     "@typescript-eslint/eslint-plugin": "2.19.2",
     "@typescript-eslint/parser": "2.19.2",
-    "apollo-boost": "^0.4.9",
-    "apollo-server-lambda": "^2.15.1",
-    "aws-sdk": "^2.714.0",
     "babel-jest": "25.1.0",
     "babel-loader": "8.1.0",
     "dotenv": "6.2.0",
@@ -71,19 +86,16 @@
     "lint-staged": "^10.2.11",
     "npm-run-all": "^4.1.5",
     "prettier": "2.0.4",
-    "reflect-metadata": "^0.1.13",
-    "runtypes": "^5.0.1",
     "serverless": "1.58.0",
-    "serverless-offline": "^6.4.0",
     "ts-jest": "25.2.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.9.1",
-    "type-graphql": "^1.0.0-rc.3",
     "typescript": "^3.9.7"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn prepush"
     }
   },
   "lint-staged": {

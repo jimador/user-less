@@ -8,19 +8,28 @@ const path = require('path');
 
 const packageJson = require('../package.json');
 const requiredNodeVersion = packageJson.engines.node;
+const projectName = packageJson.name;
 
 const runningNodeVersion = process.version;
 
 // set .nvmrc and .node_version to have the same version
 
-fs.writeFileSync(path.join(__dirname, '..', '.node-version'), requiredNodeVersion, 'UTF8');
-fs.writeFileSync(path.join(__dirname, '..', '.nvmrc'), requiredNodeVersion, 'UTF8');
+fs.writeFileSync(
+  path.join(__dirname, '..', '.node-version'),
+  requiredNodeVersion,
+  'UTF8'
+);
+fs.writeFileSync(
+  path.join(__dirname, '..', '.nvmrc'),
+  requiredNodeVersion,
+  'UTF8'
+);
 
 // check that the required version of Node is running
 
 if (!runningNodeVersion.split('.')[0].includes(requiredNodeVersion)) {
   console.error(`
-            You are not running the required version of Node, please use version ${requiredNodeVersion}.
+            Current Node version is ${runningNodeVersion}, ${projectName} requires ${requiredNodeVersion}.
             If you have installed NVM and AVN, just exit the project folder and cd into it again.
             `);
 

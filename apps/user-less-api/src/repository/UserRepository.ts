@@ -8,19 +8,23 @@ export const UserTableName = 'User';
 export const UserTable = { TableName: UserTableName };
 
 /**
- * Build {@link DocumentClient#GetItemInput} "by id" query args.
+ * Build {DocumentClient.GetItemInput} "by id" query args.
  * @param userId the user id
  */
-const byId = (userId: string): DocumentClient.GetItemInput =>
-  ({ ...UserTable, Key: { id: userId } });
+const byId = (userId: string): DocumentClient.GetItemInput => ({
+  ...UserTable,
+  Key: { id: userId },
+});
 
 /**
- * Build {@link DocumentClient#PutItemInput} "save or update" query args.
+ * Build {DocumentClient.PutItemInput} "save or update" query args.
  * @param userInput the user data to save or update
  * @param userId the user id to update.
  */
-const saveOrUpdate = (userInput: IUser, userId?: string):
-  DocumentClient.PutItemInput => {
+const saveOrUpdate = (
+  userInput: IUser,
+  userId?: string
+): DocumentClient.PutItemInput => {
   const id = userId == null ? v1() : userId;
   const now = new Date().toISOString();
   const dob = userInput.dob.toISOString();
@@ -32,8 +36,8 @@ const saveOrUpdate = (userInput: IUser, userId?: string):
       id,
       dob,
       createdAt: now,
-      updatedAt: now
-    }
+      updatedAt: now,
+    },
   };
 };
 
@@ -49,17 +53,15 @@ export const nameFilter = (user: IUser, criteria?: IUserCriteria) => {
   }
 };
 
-
 /**
  * Repository interface for {@link User} CRUD methods
  */
 export interface UserRepository {
-  findAll(pageInfo: IPageInfo, criteria?: IUserCriteria): Promise<IUserPage>
+  findAll(pageInfo: IPageInfo, criteria?: IUserCriteria): Promise<IUserPage>;
 
-  findOne(userId: string): Promise<IUser | undefined>
+  findOne(userId: string): Promise<IUser | undefined>;
 
-  // TODO Id deprecated
-  save(user: IUser, userId?: string): Promise<IUser>
+  save(user: IUser, userId?: string): Promise<IUser>;
 
   delete(userId: string): Promise<void>;
 }
@@ -67,26 +69,26 @@ export interface UserRepository {
 /**
  * Default {@link UserRepository} implementation.
  */
-export const userRepository: UserRepository = new (class implements UserRepository {
-
-  // TODO - Tech Debt - remove `any`
-  // TODO - Tech Debt - user query perf
-  // TODO - Tech Debt - In-memory filtering
-  async findAll(pageInfo: IPageInfo, criteria?: IUserCriteria): Promise<IUserPage> {
+export const userRepository: UserRepository = new (class
+  implements UserRepository {
+  async findAll(
+    pageInfo: IPageInfo,
+    criteria?: IUserCriteria
+  ): Promise<IUserPage> {
     const result = await dynamoDb.scan(UserTable).promise();
 
-    const filtered = (result.Items as IUser[])
-      .filter(u => nameFilter(u, criteria));
+    const filtered = (result.Items as IUser[]).filter((u) =>
+      nameFilter(u, criteria)
+    );
 
     console.warn(`Got: ${filtered.length} items`);
     const { items, cursor } = getPage(filtered, pageInfo);
     return {
       users: items,
-      cursor: `${cursor}`
+      cursor: `${cursor}`,
     };
   }
 
-  // TODO - Tech Debt - remove `any`
   async findOne(id: string): Promise<IUser | undefined> {
     const params = byId(id);
     const r = await dynamoDb.get(params).promise();
@@ -99,7 +101,7 @@ export const userRepository: UserRepository = new (class implements UserReposito
       await dynamoDb.put(params).promise();
       const saved = await this.findOne(params.Item.id);
       return saved;
-    } catch ( e ) {
+    } catch (e) {
       console.error(`Error saving ${userId}`);
       console.error(`${e.message}`);
     }
@@ -109,5 +111,4 @@ export const userRepository: UserRepository = new (class implements UserReposito
     const params = byId(id);
     await dynamoDb.delete(params).promise();
   }
-
 })();

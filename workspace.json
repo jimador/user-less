@@ -95,10 +95,7 @@
               "apps/user-less-api/tsconfig.app.json",
               "apps/user-less-api/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/user-less-api/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/user-less-api/**/*"]
           }
         },
         "test": {
@@ -107,6 +104,43 @@
             "jestConfig": "apps/user-less-api/jest.config.js",
             "tsConfig": "apps/user-less-api/tsconfig.spec.json",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "user-less-gql-client": {
+      "root": "libs/user-less-gql-client",
+      "sourceRoot": "libs/user-less-gql-client/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/user-less-gql-client/tsconfig.lib.json",
+              "libs/user-less-gql-client/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/user-less-gql-client/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/user-less-gql-client/jest.config.js",
+            "tsConfig": "libs/user-less-gql-client/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "generate": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "npx graphql-codegen --config libs/user-less-gql-client/codegen.yml"
+              }
+            ]
           }
         }
       }
