@@ -1,7 +1,7 @@
 import { GraphQLScalarTypeConfig } from 'graphql/type/definition';
 import { GraphQLScalarType } from 'graphql';
 
-const config: GraphQLScalarTypeConfig<Date | string, string> = ({
+const config: GraphQLScalarTypeConfig<Date | string, string> = {
   name: 'IsoDateScalar',
   description: `An ISO Date string.`,
   parseValue(value) {
@@ -23,7 +23,7 @@ const config: GraphQLScalarTypeConfig<Date | string, string> = ({
       return new Date(value.value);
     }
     return null;
-  }
-});
+  },
+};
 
 export const ISODateScalar = new GraphQLScalarType(config);

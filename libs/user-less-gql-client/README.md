@@ -1,7 +1,17 @@
 # user-less-gql-client
 
-This library was generated with [Nx](https://nx.dev).
+## Sharable, Apollo hooks based, GraphQL data access component.
 
-## Running unit tests
+This library generates all User based graphql queries and mutations from the
+[user operations schema](src/lib/graphql/user-operations.graphql).
+Code generation is provided via [GraphQL Code Generator](https://graphql-code-generator.com/). Generated
+types and operations are defined in [codegen.yml](codegen.yml)
+The frontend types are generated from the [user-management-api]() graphql schema, and the operations
+generated are defined in this library. This provides loose coupling, and an API that can be
+contract tested to quickly detect breaking API changes.
 
-Run `nx test user-less-gql-client` to execute the unit tests via [Jest](https://jestjs.io).
+To generate new Apollo hooks and types run:
+
+```bash
+yarn nx run user-less-gql-client:generate
+```

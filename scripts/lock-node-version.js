@@ -8,15 +8,22 @@ const path = require('path');
 
 const packageJson = require('../package.json');
 const requiredNodeVersion = packageJson.engines.node;
-const projectName = packageJson.name
+const projectName = packageJson.name;
 
 const runningNodeVersion = process.version;
 
 // set .nvmrc and .node_version to have the same version
 
-
-fs.writeFileSync(path.join(__dirname, '..', '.node-version'), requiredNodeVersion, 'UTF8');
-fs.writeFileSync(path.join(__dirname, '..', '.nvmrc'), requiredNodeVersion, 'UTF8');
+fs.writeFileSync(
+  path.join(__dirname, '..', '.node-version'),
+  requiredNodeVersion,
+  'UTF8'
+);
+fs.writeFileSync(
+  path.join(__dirname, '..', '.nvmrc'),
+  requiredNodeVersion,
+  'UTF8'
+);
 
 // check that the required version of Node is running
 

@@ -10,8 +10,8 @@ const server = new ApolloServer({
     resolvers: [UserResolver],
     emitSchemaFile: path.resolve('/tmp', 'schema.graphql'),
     validate: false,
-    scalarsMap: [{ type: Date, scalar: ISODateScalar }]
-  })
+    scalarsMap: [{ type: Date, scalar: ISODateScalar }],
+  }),
 });
 
 export const graphql = server.createHandler();

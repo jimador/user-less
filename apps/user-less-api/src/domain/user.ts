@@ -21,7 +21,7 @@ export interface IUser {
 }
 
 export interface IUserCriteria {
-  name?: string
+  name?: string;
 }
 
 export interface IPageInfo {
@@ -31,5 +31,5 @@ export interface IPageInfo {
 
 export interface IUserPage {
   users: IUser[];
-  cursor?: string
+  cursor?: string;
 }

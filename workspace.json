@@ -132,6 +132,16 @@
             "tsConfig": "libs/user-less-gql-client/tsconfig.spec.json",
             "passWithNoTests": true
           }
+        },
+        "generate": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "npx graphql-codegen --config libs/user-less-gql-client/codegen.yml"
+              }
+            ]
+          }
         }
       }
     }

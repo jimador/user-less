@@ -3,7 +3,14 @@ import * as jsonfile from 'jsonfile';
 import * as path from 'path';
 
 import { makeFactory } from 'factory.ts';
-import { dateGen, descriptionGen, idGen, addressGen, nameGen, latLngGen } from './user.fakes';
+import {
+  dateGen,
+  descriptionGen,
+  idGen,
+  addressGen,
+  nameGen,
+  latLngGen,
+} from './user.fakes';
 
 const userSeedFileName = 'Users.json';
 
@@ -20,7 +27,7 @@ const createUser = () => {
     createdAt: dateGen(),
     updatedAt: dateGen(10),
     lat,
-    lng
+    lng,
   };
   return user;
 };

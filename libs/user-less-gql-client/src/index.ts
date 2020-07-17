@@ -1,1 +1,1 @@
-export * from './lib/user-less-gql-client';
+export * from './lib/generated/user-operations';

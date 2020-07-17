@@ -1,0 +1,62 @@
+mutation addUser($user: UserInput!) {
+  addUser(user: $user) {
+    id
+    name
+    address
+    dob
+    description
+    lat
+    lng
+    createdAt
+    updatedAt
+  }
+}
+
+mutation updateUser($user: UserInput!) {
+  updateUser(user: $user) {
+    id
+    name
+    address
+    dob
+    description
+    lat
+    lng
+    createdAt
+    updatedAt
+  }
+}
+
+mutation deleteUser($id: String!) {
+  deleteUser(id: $id)
+}
+
+query findAll($pageInfo: PageInfo!, $criteria: UserCriteria) {
+  findAll(pageInfo: $pageInfo, criteria: $criteria) {
+    users {
+      id
+      name
+      address
+      dob
+      description
+      lat
+      lng
+      createdAt
+      updatedAt
+    }
+    cursor
+  }
+}
+
+query findOne($id: String!) {
+  findOne(id: $id) {
+    id
+    name
+    address
+    dob
+    description
+    lat
+    lng
+    createdAt
+    updatedAt
+  }
+}
