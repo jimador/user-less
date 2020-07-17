@@ -18,7 +18,8 @@
     "paths": {
       "@user-less/user-less-gql-client": [
         "libs/user-less-gql-client/src/index.ts"
-      ]
+      ],
+      "@user-less/user-less-ui": ["libs/user-less-ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

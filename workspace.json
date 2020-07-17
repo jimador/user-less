@@ -144,6 +144,63 @@
           }
         }
       }
+    },
+    "user-less-ui": {
+      "root": "libs/user-less-ui",
+      "sourceRoot": "libs/user-less-ui/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/user-less-ui/tsconfig.lib.json",
+              "libs/user-less-ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/user-less-ui/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/user-less-ui/jest.config.js",
+            "tsConfig": "libs/user-less-ui/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/user-less-ui/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/user-less-ui",
+            "config": {
+              "configFolder": "libs/user-less-ui/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
     }
   },
   "cli": {

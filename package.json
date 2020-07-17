@@ -27,7 +27,10 @@
     "preinstall": "node  scripts/lock-node-version.js",
     "prepush": "run-s affected:lint affected:test",
     "gen:userless-api": "yarn nx run user-less-gql-client:generate",
-    "generate-gql": "run-p gen:userless-api"
+    "generate-gql": "run-p gen:userless-api",
+    "gen-rc": ". scripts/gen-react-component.sh",
+    "gen-story": ". scripts/gen-component-story.sh",
+    "start:sb": "nx run user-less-ui:storybook"
   },
   "private": true,
   "engines": {
@@ -36,6 +39,8 @@
   "dependencies": {
     "@apollo/react-common": "^3.1.4",
     "@apollo/react-hooks": "^3.1.5",
+    "@chakra-ui/core": "^1.0.0-next.6",
+    "@chakra-ui/theme": "^1.0.0-next.6",
     "@types/react-dom": "^16.9.8",
     "apollo-boost": "^0.4.9",
     "apollo-server-lambda": "^2.16.0",
@@ -62,8 +67,12 @@
     "@nrwl/jest": "9.2.2",
     "@nrwl/lint": "^8.4.0-beta.4",
     "@nrwl/react": "^9.5.1",
+    "@nrwl/storybook": "9.5.1",
     "@nrwl/web": "9.5.1",
     "@nrwl/workspace": "9.5.1",
+    "@storybook/addon-knobs": "5.3.9",
+    "@storybook/react": "5.3.9",
+    "@testing-library/react": "^10.4.7",
     "@types/aws-lambda": "^8.10.40",
     "@types/faker": "^4.1.12",
     "@types/jest": "25.1.4",
