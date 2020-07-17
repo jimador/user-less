@@ -90,7 +90,10 @@
     "ts-jest": "25.2.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.9.1",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "@nrwl/storybook": "9.5.1",
+    "@storybook/addon-knobs": "5.3.9",
+    "@storybook/react": "5.3.9"
   },
   "husky": {
     "hooks": {
