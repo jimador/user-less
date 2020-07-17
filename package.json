@@ -23,9 +23,11 @@
     "update": "nx migrate latest",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "preinstall": "node  scripts/lock-node-version.js"
   },
   "private": true,
+  "engines" : { "node" : "12" },
   "dependencies": {
     "serverless-dynamodb-local": "^0.2.39"
   },
