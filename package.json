@@ -48,7 +48,9 @@
     "runtypes": "^5.0.1",
     "serverless-dynamodb-local": "^0.2.39",
     "serverless-offline": "^6.4.0",
-    "type-graphql": "^1.0.0-rc.3"
+    "type-graphql": "^1.0.0-rc.3",
+    "@chakra-ui/core": "^1.0.0-next.6",
+    "@chakra-ui/theme": "^1.0.0-next.6"
   },
   "devDependencies": {
     "@babel/core": "7.8.4",
